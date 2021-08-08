@@ -1,0 +1,44 @@
+import java.util.*;
+class Main{
+    public static int minSwap (int arr[], int n, int k) {
+        int c=0;
+        ## Find the numbers less than or equal to k in the array
+        for(int i=0;i<n;i++){
+            if(arr[i]<=k)
+              c++;
+        }
+        ## Sliding window of size c
+        int min=Integer.MAX_VALUE;
+        int count=0;
+        for(int i=0;i<c;i++){
+            if(arr[i]<=k)
+               count++;
+        }
+        min=Math.min(c-count,min);
+        for(int i=1;i<=n-c;i++){
+            if(arr[i-1]<=k)
+              count-=1;
+            if(arr[i+c-1]<=k)
+              count+=1;
+            min=Math.min(c-count,min);
+        }
+        return min;
+    }
+    public static void main(String args[]){
+        Scanner sc= new Scanner(System.in);
+        int n=sc.nextInt();
+        int[] arr=new int[n];
+        for(int i=0;i<n;i++)
+           arr[i]=sc.nextInt();
+        int k=sc.nextInt();
+        System.out.println(minSwap(arr,n,k));
+    }
+}
+
+
+
+
+ Time Complexity: O(N).
+ Auxiliary Space: O(1).
+ 
+ Problem Link : https://practice.geeksforgeeks.org/problems/minimum-swaps-required-to-bring-all-elements-less-than-or-equal-to-k-together/0
