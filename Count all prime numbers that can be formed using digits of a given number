@@ -1,0 +1,44 @@
+import java.util.*;
+public class Number_of_primes{
+    public static HashSet<Integer> set=new HashSet<>();
+    public static boolean isprime(int number){
+        if(number!=2 && number%2==0)
+            return false;
+        if(number<2)
+            return false;
+        for(int i=3;i<=(int)Math.sqrt(number);i+=2){
+            if(number%i==0)
+               return false;
+        }
+        return true;
+    }
+    public static void Dfs(int[] array,String ans){
+        if(ans.length()!=0 && isprime(Integer.parseInt(ans)))
+            set.add(Integer.parseInt(ans));
+        for(int i=0;i<10;i++){
+            if(array[i]==0)
+              continue;
+            ans+=i;
+            array[i]--;
+            Dfs(array,ans);
+            ans=ans.substring(0,ans.length()-1);
+            array[i]++;
+        }
+    }
+    public static void main(String args[]) {
+        Scanner sc=new Scanner(System.in);
+        String s=sc.nextLine();
+        int count_array[]=new int[10];
+        for(int i=0;i<s.length();i++){
+            count_array[Integer.parseInt(""+s.charAt(i))]++;
+        }
+        Dfs(count_array,"");
+        for(Integer i:set){
+            System.out.println(i);
+        }
+    }
+}
+
+
+
+link : https://www.geeksforgeeks.org/count-all-prime-numbers-that-can-be-formed-using-digits-of-a-given-number/
