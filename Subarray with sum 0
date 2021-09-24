@@ -1,0 +1,19 @@
+class Solution:
+    
+    #Function to check whether there is a subarray present with 0-sum or not.
+    def subArrayExists(self,arr,n):
+        ##Your code here
+        #Return true or false
+        sum=0
+        l=set()
+        for i in arr:
+            sum+=i
+            if sum==0:
+                return True
+            if sum in l:
+                return True
+            l.add(sum)
+        return False
+        
+        
+ LINK : https://www.geeksforgeeks.org/find-if-there-is-a-subarray-with-0-sum/
