@@ -1,0 +1,66 @@
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+class GFG {
+	public static void main (String[] args) {
+		//code
+		Scanner sc=new Scanner(System.in);
+		int n=sc.nextInt();
+		int a[]=new int[n];
+		for(int i=0;i<n;i++)
+		a[i]=sc.nextInt();
+		int m=a[0];
+		PriorityQueue<Integer> p1=new PriorityQueue<>(Collections.reverseOrder());
+		PriorityQueue<Integer> p2=new PriorityQueue<>();
+		System.out.println(m);
+		p1.add(m);
+		for(int i=1;i<n;i++)
+		{
+		    int x=a[i];
+		    if(p1.size()>p2.size())
+		    {
+		        if(x<=m)
+		        {
+		            p2.add(p1.remove());
+		            p1.add(x);
+		        }
+		        else
+		        p2.add(x);
+		        m=(p1.peek()+p2.peek())/2;
+		        System.out.println(m);
+		    }
+		    else if(p1.size()==p2.size())
+		    {
+		        if(x<=m)
+		        {
+		            p1.add(x);
+		            m=p1.peek();
+		            System.out.println(m);
+		        }
+		        else
+		        {
+		            p2.add(x);
+		            m=p2.peek();
+		            System.out.println(m);
+		        }
+		    }
+		    else
+		    {
+		        if(x>m)
+		        {
+		            p1.add(p2.remove());
+		            p2.add(x);
+		        }
+		        else
+		        p1.add(x);
+		        m=(p1.peek()+p2.peek())/2;
+		        System.out.println(m);
+		    }
+		}
+	}
+}
+
+
+LINK : https://practice.geeksforgeeks.org/problems/find-median-in-a-stream-1587115620/1/?category[]=Heap&category[]=Heap&company[]=Amazon&company[]=Amazon&page=1&query=category[]Heapcompany[]Amazonpage1company[]Amazoncategory[]Heap
