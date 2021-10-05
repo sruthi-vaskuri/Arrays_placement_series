@@ -1,0 +1,57 @@
+RECURSIVE :
+
+
+class Solution{
+    static int min=Integer.MAX_VALUE;
+    static void jumps(int start,int[] arr,int c){
+        if(start>=arr.length){
+            min=Math.min(min,c);
+            return;
+        }
+        for(int i=1;i<=arr[start];i++)
+            jumps(start+i,arr,c+1);
+    }
+    static int minJumps(int[] arr){
+        // your code here
+        jumps(0,arr,0);
+        if(min==Integer.MAX_VALUE)
+           return -1;
+        return min;
+    }
+}
+
+Time complexity: O(n^n). 
+There are maximum n possible ways to move from a element. So maximum number of steps can be N^N so the upperbound of time complexity is O(n^n)
+Auxiliary Space: O(1). 
+There is no space required (if recursive stack space is ignored)
+
+
+DP SOLUTION :
+
+
+class Solution{
+    static int minJumps(int[] arr){
+        // your code here
+        int dp[]=new int[arr.length];
+        for(int i=0;i<arr.length;i++)
+            dp[i]=Integer.MAX_VALUE;
+        if(arr[0]!=0)
+            dp[0]=0;
+        for(int i=1;i<arr.length;i++){
+            for(int j=0;j<i;j++){
+                if(j+arr[j]>=i && dp[j]!=Integer.MAX_VALUE){
+                    dp[i]=Math.min(dp[i],dp[j]+1);
+                }
+            }
+        }
+        if (dp[arr.length-1]==Integer.MAX_VALUE)
+           return -1;
+        return dp[arr.length-1];
+    }
+}
+
+Time Complexity: O(n^2) 
+
+
+link : https://www.geeksforgeeks.org/minimum-number-of-jumps-to-reach-end-of-a-given-array/
+
