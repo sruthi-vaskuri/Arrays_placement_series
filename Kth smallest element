@@ -1,0 +1,43 @@
+class Solution{
+    public static int partition(int[] arr,int l,int r){
+        if(r-l>=1){
+            int pivot=arr[l];
+            int i=l;
+            int j =r;
+            while(i<j){
+                while(i<=j && arr[i]<=pivot)
+                   i++;
+                while(j>=l && arr[j]>pivot)
+                   j--;
+                if(i<j){
+                    int t=arr[j];
+                    arr[j]=arr[i];
+                    arr[i]=t;
+                }
+            }
+            int t=arr[l];
+            arr[l]=arr[j];
+            arr[j]=t;
+            return j;
+        }
+        return l;
+    }
+    public static int kthSmallest(int[] arr, int l, int r, int k) 
+    { 
+        //Your code here
+       
+        if(l<r){
+            int pivot=partition(arr,l,r);
+            if(pivot+1==k)
+                return arr[pivot];
+            if(pivot+1>k)
+               return  kthSmallest(arr,l,pivot-1,k);
+            else
+                return kthSmallest(arr,pivot+1,r,k);
+        }
+        return arr[l];
+    } 
+}
+
+
+link : https://practice.geeksforgeeks.org/problems/kth-smallest-element5635/1#
