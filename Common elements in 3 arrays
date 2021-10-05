@@ -1,0 +1,26 @@
+class Solution:
+    def commonElements (self,A, B, C, n1, n2, n3):
+        # your code here
+        x=0
+        y=0
+        z=0
+        l=[]
+        prev=10**9
+        while(x<n1 and y<n2 and z<n3):
+            if A[x]==B[y] and B[y]==C[z] and A[x]!=prev:
+                l.append(A[x])
+                prev=A[x]
+                x+=1
+                y+=1
+                z+=1
+            elif A[x]<B[y]:
+                x+=1
+            elif B[y]<C[z]:
+                y+=1
+            else:
+                z+=1
+        return l
+        
+        
+        
+ LINK : https://practice.geeksforgeeks.org/problems/common-elements1132/1#
