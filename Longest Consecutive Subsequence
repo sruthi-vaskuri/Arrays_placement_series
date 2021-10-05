@@ -1,0 +1,34 @@
+class Solution
+{   
+    // arr[] : the input array
+    // N : size of the array arr[]
+    
+    //Function to return length of longest subsequence of consecutive integers.
+	static int findLongestConseqSubseq(int a[], int N)
+	{
+	   // add your code here
+	   TreeSet<Integer> pq = new TreeSet<Integer>();
+            for (int i = 0; i < a.length; i++) {
+            pq.add(a[i]);
+            }
+            int max = 0, count = 0;
+            Iterator it = pq.iterator();
+            while (it.hasNext()) {
+            int item = (int) it.next() + 1;
+            if (pq.contains(item)) {
+               count++;
+            } else {
+                if (count > max)
+                max = count;
+                count = 0;
+               }
+            }
+            
+            return max + 1;
+        }
+}
+
+
+
+
+LINK : https://practice.geeksforgeeks.org/problems/longest-consecutive-subsequence2449/1
