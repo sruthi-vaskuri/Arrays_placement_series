@@ -1,0 +1,22 @@
+class Solution:
+
+	# Function to find maximum
+	# product subarray
+	def maxProduct(self,arr, n):
+		# code here
+		mini=arr[0]
+		maxi=arr[0]
+		ans=arr[0]
+		for i in range(1,n):
+		    max1=max(maxi*arr[i],mini*arr[i],arr[i])
+		    min1=min(maxi*arr[i],mini*arr[i],arr[i])
+		    ans=max(ans,max1)
+		    maxi=max1
+		    mini=min1
+		return ans
+    
+ 
+ 
+ LINK : https://practice.geeksforgeeks.org/problems/maximum-product-subarray3604/1
+ 
+ REFERENCE : https://www.youtube.com/watch?v=vtJvbRlHqTA
