@@ -1,0 +1,19 @@
+class Solution:
+    def findTwoElement( self,arr, n): 
+        # code here
+        missing=0
+        repeated=0
+        for i in range(len(arr)):
+            index=abs(arr[i])
+            if arr[index-1]<0:
+                repeated=index
+            else:
+                arr[index-1]*=-1
+        for i in range(len(arr)):
+            if arr[i]>0:
+                missing=i+1
+        return [repeated,missing]
+        
+        
+        
+ LINK : https://practice.geeksforgeeks.org/problems/find-missing-and-repeating2512/1
